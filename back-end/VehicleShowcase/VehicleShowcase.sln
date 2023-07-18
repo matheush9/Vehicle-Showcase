@@ -5,11 +5,13 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleShowcase.Web", "VehicleShowcase.Web\VehicleShowcase.Web.csproj", "{2A984DC0-02D7-4A74-B7A5-E56F54D4F117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleShowcase.Domain", "VehicleShowcase.Domain\VehicleShowcase.Domain.csproj", "{1AC9673E-0B14-4CB7-899B-25F62DD7B45A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleShowcase.Domain", "VehicleShowcase.Domain\VehicleShowcase.Domain.csproj", "{1AC9673E-0B14-4CB7-899B-25F62DD7B45A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleShowcase.Application", "VehicleShowcase.Application\VehicleShowcase.Application.csproj", "{3F91646C-16D2-4B6D-8720-CF81127E4D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleShowcase.Application", "VehicleShowcase.Application\VehicleShowcase.Application.csproj", "{3F91646C-16D2-4B6D-8720-CF81127E4D65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleShowcase.Infrastructure", "VehicleShowcase.Infrastructure\VehicleShowcase.Infrastructure.csproj", "{A9507694-9BC1-4990-ADCB-C6183863CBE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleShowcase.Infrastructure", "VehicleShowcase.Infrastructure\VehicleShowcase.Infrastructure.csproj", "{A9507694-9BC1-4990-ADCB-C6183863CBE6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5DA9A4C1-2DC2-4B2B-8A61-5F1A48E100CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A9507694-9BC1-4990-ADCB-C6183863CBE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9507694-9BC1-4990-ADCB-C6183863CBE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9507694-9BC1-4990-ADCB-C6183863CBE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA9A4C1-2DC2-4B2B-8A61-5F1A48E100CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA9A4C1-2DC2-4B2B-8A61-5F1A48E100CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA9A4C1-2DC2-4B2B-8A61-5F1A48E100CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA9A4C1-2DC2-4B2B-8A61-5F1A48E100CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

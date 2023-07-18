@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  vehicleshowcase.web:
+    ports:
+      - 8001:80
+    image: ${DOCKER_REGISTRY-}vehicleshowcaseweb
+    build:
+      context: .
+      dockerfile: VehicleShowcase.Web/Dockerfile
+    depends_on:
+      - vehicleshowcaseDB
+  vehicleshowcaseDB:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - SA_PASSWORD=yourStrong(!)Password
+      - ACCEPT_EULA=Y
