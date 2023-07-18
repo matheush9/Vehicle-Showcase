@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="DTOs\AdminUser\" />
+    <Folder Include="DTOs\Vehicle\" />
+    <Folder Include="Interfaces\AdminUser\" />
+    <Folder Include="Interfaces\Vehicle\" />
+    <Folder Include="Services\AdminUser\" />
+    <Folder Include="Services\Vehicle\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleShowcase.Domain\VehicleShowcase.Domain.csproj" />
+    <ProjectReference Include="..\VehicleShowcase.Infrastructure\VehicleShowcase.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
