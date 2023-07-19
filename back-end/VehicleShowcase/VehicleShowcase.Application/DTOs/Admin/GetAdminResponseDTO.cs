@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VehicleShowcase.Application.DTOs.Admin
+﻿namespace VehicleShowcase.Application.DTOs.Admin
 {
-    internal class GetAdminResponseDTO
+    public class GetAdminResponseDTO
     {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Usuario { get; set; }
     }
 }
