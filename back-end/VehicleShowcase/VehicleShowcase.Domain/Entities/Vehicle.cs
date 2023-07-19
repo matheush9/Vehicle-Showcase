@@ -11,14 +11,5 @@ namespace VehicleShowcase.Domain.Entities
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Foto { get; set; }
-
-        public Vehicle(int Id, string Nome, string Marca, string Modelo, string Foto)
-        {
-            this.Id = Id;
-            this.Nome = Nome;
-            this.Marca = Marca;
-            this.Modelo = Modelo;
-            this.Foto = Foto;
-        }
     }
 }

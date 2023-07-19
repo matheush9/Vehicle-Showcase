@@ -31,7 +31,7 @@ namespace VehicleShowcase.Web.Controllers
         public async Task<ActionResult<GetAdminResponseDTO>> AddAdminAsync(AddAdminRequestDTO newAdmin)
         {
             var admin = await _adminService.AddAdminAsync(newAdmin);
-
+            
             return Ok(admin);
         }
 
