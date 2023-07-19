@@ -1,8 +1,10 @@
+using VehicleShowcase.Application.Services.Extensions;
 using VehicleShowcase.Infrastructure.Services.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegisterDataServices(builder.Configuration);
+builder.Services.RegisterApplicationServices();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
