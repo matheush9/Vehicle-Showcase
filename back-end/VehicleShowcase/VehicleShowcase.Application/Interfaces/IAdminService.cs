@@ -7,7 +7,7 @@ namespace VehicleShowcase.Application.Interfaces
     {
         Task<GetAdminResponseDTO> GetAdminByIdAsync(int id);
         Task<GetAdminResponseDTO> AddAdminAsync(AddAdminRequestDTO newAdmin);
-        Task<GetAdminResponseDTO> DeleteAdminAsync(int id);
-        Task<GetAdminResponseDTO> UpdateAdminAsync(int id, AddAdminRequestDTO newAdmin);
+        Task DeleteAdminAsync(int id);
+        Task<GetAdminResponseDTO> UpdateAdminAsync(int id, EditAdminRequestDTO newAdmin);
     }
 }

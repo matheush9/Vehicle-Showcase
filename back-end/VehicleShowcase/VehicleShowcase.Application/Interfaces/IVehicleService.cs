@@ -6,7 +6,7 @@ namespace VehicleShowcase.Application.Interfaces
     {
         Task<GetVehicleResponseDTO> GetVehicleByIdAsync(int id);
         Task<GetVehicleResponseDTO> AddVehicleAsync(AddVehicleRequestDTO newVehicle);
-        Task<GetVehicleResponseDTO> DeleteVehicleAsync(int id);
+        Task DeleteVehicleAsync(int id);
         Task<GetVehicleResponseDTO> UpdateVehicleAsync(int id, AddVehicleRequestDTO newVehicle);
     }
 }
