@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.MigrateDatabase();
 app.UseSwagger();
 app.UseSwaggerUI();
 
