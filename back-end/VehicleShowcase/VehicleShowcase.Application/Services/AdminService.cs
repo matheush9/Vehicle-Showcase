@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using VehicleShowcase.Application.DTOs.Admin;
 using VehicleShowcase.Application.DTOs.AdminUser;
 using VehicleShowcase.Application.Interfaces;
@@ -28,6 +28,8 @@ namespace VehicleShowcase.Application.Services
         public async Task<GetAdminResponseDTO> AddAdminAsync(AddAdminRequestDTO newAdmin)
         {
             var admin = _mapper.Map<Admin>(newAdmin);
+            admin.Senha = PasswordHasherService.HashPassword(newAdmin.Senha);
+
             await _dataContext.Admins.AddAsync(admin);
             await _dataContext.SaveChangesAsync();
 
