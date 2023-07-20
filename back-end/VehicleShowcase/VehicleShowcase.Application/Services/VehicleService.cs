@@ -1,4 +1,5 @@
-using AutoMapper;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using VehicleShowcase.Application.DTOs.Vehicle;
 using VehicleShowcase.Application.Interfaces;
 using VehicleShowcase.Domain.Entities;
@@ -22,6 +23,13 @@ namespace VehicleShowcase.Application.Services
             var vehicle = await _dataContext.Vehicles.FindAsync(id);
 
             return _mapper.Map<GetVehicleResponseDTO>(vehicle);
+        }
+
+        public async Task<List<GetVehicleResponseDTO>> GetAllVehiclesOrderByPriceAsync()
+        {
+            var vehicles = await _dataContext.Vehicles.OrderBy(p => p.Preco).ToListAsync();
+
+            return _mapper.Map<List<GetVehicleResponseDTO>>(vehicles);
         }
 
         public async Task<GetVehicleResponseDTO> AddVehicleAsync(AddVehicleRequestDTO newVehicle)

@@ -28,6 +28,12 @@ namespace VehicleShowcase.Web.Controllers
             return Ok(vehicle);
         }
 
+        [HttpGet("ordered-by-price")]
+        public async Task<ActionResult<List<GetVehicleResponseDTO>>> GetAllVehiclesOrderByPriceAsync()
+        {
+            return await _vehicleService.GetAllVehiclesOrderByPriceAsync();
+        }
+
         [Authorize]
         [HttpPost]
         public async Task<ActionResult<GetAdminResponseDTO>> AddVehicleAsync(AddVehicleRequestDTO newVehicle)
