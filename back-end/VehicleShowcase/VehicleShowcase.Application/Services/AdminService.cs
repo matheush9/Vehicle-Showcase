@@ -1,6 +1,9 @@
-using AutoMapper;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using VehicleShowcase.Application.DTOs.Admin;
 using VehicleShowcase.Application.DTOs.AdminUser;
+using VehicleShowcase.Application.DTOs.JwtToken;
 using VehicleShowcase.Application.Interfaces;
 using VehicleShowcase.Domain.Entities;
 using VehicleShowcase.Infrastructure.Data;
@@ -36,6 +39,7 @@ namespace VehicleShowcase.Application.Services
             return _mapper.Map<GetAdminResponseDTO>(admin);
         }
 
+        [Authorize]
         public async Task DeleteAdminAsync(int id)
         {
             var admin = await _dataContext.Admins.FindAsync(id);
@@ -48,6 +52,7 @@ namespace VehicleShowcase.Application.Services
             }
         }
 
+        [Authorize]
         public async Task<GetAdminResponseDTO> UpdateAdminAsync(int id, EditAdminRequestDTO newAdmin)
         {
             var admin = await _dataContext.Admins.FindAsync(id);
@@ -61,6 +66,16 @@ namespace VehicleShowcase.Application.Services
             }
 
             return _mapper.Map<GetAdminResponseDTO>(admin);
+        }
+
+        public async Task<JwtTokenResponseDto> Authenticate(AddAdminRequestDTO adminRequest)
+        {
+            var admin = await _dataContext.Admins.FirstOrDefaultAsync(x => x.Usuario == adminRequest.Usuario);
+
+            if (admin is not null && PasswordHasherService.VerifyPasswordMatching(adminRequest.Senha, admin.Senha))
+                return TokenService.GenerateToken(admin);
+
+            return new JwtTokenResponseDto();
         }
     }
 }

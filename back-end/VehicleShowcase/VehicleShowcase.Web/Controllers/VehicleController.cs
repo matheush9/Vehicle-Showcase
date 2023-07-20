@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VehicleShowcase.Application.DTOs.Admin;
 using VehicleShowcase.Application.DTOs.Vehicle;
 using VehicleShowcase.Application.Interfaces;
@@ -27,6 +28,7 @@ namespace VehicleShowcase.Web.Controllers
             return Ok(vehicle);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<GetAdminResponseDTO>> AddVehicleAsync(AddVehicleRequestDTO newVehicle)
         {
@@ -34,6 +36,7 @@ namespace VehicleShowcase.Web.Controllers
             return Ok(vehicle);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicleAsync(int id)
         {
@@ -42,6 +45,7 @@ namespace VehicleShowcase.Web.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<GetAdminResponseDTO>> UpdateVehicleAsync(int id, AddVehicleRequestDTO newVehicle)
         {

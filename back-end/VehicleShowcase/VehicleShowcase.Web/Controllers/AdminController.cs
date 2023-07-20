@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VehicleShowcase.Application.DTOs.Admin;
 using VehicleShowcase.Application.DTOs.AdminUser;
 using VehicleShowcase.Application.Interfaces;
@@ -16,6 +17,7 @@ namespace VehicleShowcase.Web.Controllers
             _adminService = adminService;                
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<GetAdminResponseDTO>> GetAdminByIdAsync(int id)
         {
@@ -35,6 +37,7 @@ namespace VehicleShowcase.Web.Controllers
             return Ok(admin);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAdminAsync(int id)
         {
@@ -43,6 +46,7 @@ namespace VehicleShowcase.Web.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<GetAdminResponseDTO>> UpdateAdminAsync(int id, EditAdminRequestDTO newAdmin)
         {
@@ -52,6 +56,17 @@ namespace VehicleShowcase.Web.Controllers
                 return NotFound(admin);
 
             return Ok(admin);
+        }
+
+        [HttpPost("auth")]
+        public async Task<ActionResult> Authenticate([FromBody] AddAdminRequestDTO adminRequest)
+        {
+            var token = await _adminService.Authenticate(adminRequest);
+
+            if (string.IsNullOrEmpty(token.accessToken))
+                return Unauthorized();
+
+            return Ok(token);
         }
     }
 }
