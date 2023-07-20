@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using VehicleShowcase.Application.DTOs.Vehicle;
 using VehicleShowcase.Application.Interfaces;
 using VehicleShowcase.Domain.Entities;
@@ -55,6 +55,7 @@ namespace VehicleShowcase.Application.Services
                 vehicle.Modelo = newVehicle.Modelo;
                 vehicle.Marca = newVehicle.Marca;
                 vehicle.Foto = newVehicle.Foto;
+                vehicle.Preco = newVehicle.Preco;
 
                 await _dataContext.SaveChangesAsync();
             }
