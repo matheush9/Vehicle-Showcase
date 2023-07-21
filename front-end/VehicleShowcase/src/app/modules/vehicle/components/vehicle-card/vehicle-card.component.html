@@ -1,13 +1,23 @@
-<div class="w-1/6 shadow-md rounded-md">
+<div class="shadow-md rounded-md">
   <div class="flex">
     <img class="w-full max-h-48" src="/assets/carro.jpeg" alt="Foto" />
   </div>
   <div class="flex flex-col px-4 py-2">
-    <div><span class="font-bold text-lg">Nome Nome Nome</span></div>
-    <div><span class="font-bold text-gray-500">Marca</span></div>
     <div>
-      <span>Modelo: <span>Modelo</span></span>
+      <span class="font-bold text-lg">{{ vehicle?.nome }}</span>
     </div>
-    <div><span class="font-bold text-xl text-blue-600">R$ 00.000</span></div>
+    <div>
+      <span class="font-bold text-gray-500">{{ vehicle?.marca }}</span>
+    </div>
+    <div>
+      <span
+        >Modelo: <span class="font-bold">{{ vehicle?.modelo }}</span></span
+      >
+    </div>
+    <div>
+      <span class="font-bold text-xl text-blue-600"
+        >R${{ vehicle?.preco | number : "1.2-2" }}</span
+      >
+    </div>
   </div>
 </div>
