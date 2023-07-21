@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { VehicleModule } from '../vehicle/vehicle.module';
@@ -8,7 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [HomeComponent, FooterComponent, NavbarComponent],
-  imports: [CommonModule, VehicleModule],
-  exports: [HomeComponent, FooterComponent],
+  imports: [RouterModule, CommonModule, VehicleModule],
+  exports: [HomeComponent, FooterComponent, NavbarComponent],
 })
 export class CoreModule {}
