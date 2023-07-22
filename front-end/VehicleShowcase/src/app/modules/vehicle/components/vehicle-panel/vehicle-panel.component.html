@@ -1,1 +1,78 @@
-<p>vehicle-panel works!</p>
+<div class="mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+  <div class="overflow-scroll mt-20" *ngIf="vehicles$ | async as vehicles">
+    <table mat-table [dataSource]="vehicles">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let veiculo">{{ veiculo.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let veiculo">{{ veiculo.nome }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="marca">
+        <th mat-header-cell *matHeaderCellDef>Marca</th>
+        <td mat-cell *matCellDef="let veiculo">{{ veiculo.marca }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="modelo">
+        <th mat-header-cell *matHeaderCellDef>Modelo</th>
+        <td mat-cell *matCellDef="let veiculo">{{ veiculo.modelo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="preco">
+        <th mat-header-cell *matHeaderCellDef>Preço</th>
+        <td mat-cell *matCellDef="let veiculo">{{ veiculo.preco }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="visualizar">
+        <th mat-header-cell *matHeaderCellDef class="!text-center">
+          Visualizar veículo
+        </th>
+        <td mat-cell *matCellDef="let veiculo" class="!text-center">
+          <button
+            class="bg-slate-500 text-white p-2 rounded-md"
+            mat-flat-button
+            [routerLink]="'' + veiculo.id"
+          >
+            Visualizar
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef class="!text-center">
+          Editar veículo
+        </th>
+        <td mat-cell *matCellDef="let veiculo" class="!text-center">
+          <button
+            class="bg-yellow-400 text-black p-2 rounded-md"
+            mat-flat-button
+            [routerLink]="'' + veiculo.id"
+          >
+            Editar
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="excluir">
+        <th mat-header-cell *matHeaderCellDef class="!text-center">
+          Excluir veículo
+        </th>
+        <td mat-cell *matCellDef="let veiculo" class="!text-center">
+          <button
+            class="bg-red-500 text-white p-2 rounded-md"
+            mat-flat-button
+            [routerLink]="'' + veiculo.id"
+          >
+            Excluir
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </div>
+</div>
