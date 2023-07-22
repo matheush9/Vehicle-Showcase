@@ -1,6 +1,6 @@
 <div class="mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
 
-  <div class="mt-10">
+  <div class="px-4 lg:px-0 my-14">
     <div class="mb-10">
       <button
       class="bg-green-500 text-white p-4 rounded-md"
@@ -11,7 +11,7 @@
     </button>
     </div>
 
-    <div class="overflow-scroll" *ngIf="vehicles$ | async as vehicles">
+    <div class="overflow-y-scroll max-h-[40rem]" *ngIf="vehicles$ | async as vehicles">
       <table mat-table [dataSource]="vehicles">
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>Id</th>
