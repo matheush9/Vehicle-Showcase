@@ -8,12 +8,20 @@
           >Vehicle Showcase</span
         >
       </div>
-      <div>
+      <div class="flex gap-4">
         <button
           class="rounded-md border-white border-2 p-2"
           routerLink="/veiculos/painel"
         >
           Gerenciar veículos
+        </button>
+
+        <button
+          *ngIf="adminIsLogged()"
+          class="rounded-md border-white border-2 p-2"
+          (click)="logout()"
+        >
+          Sair
         </button>
       </div>
     </div>
