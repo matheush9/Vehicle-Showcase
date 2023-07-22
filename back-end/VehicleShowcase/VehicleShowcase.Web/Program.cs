@@ -1,3 +1,4 @@
+using Microsoft.Extensions.FileProviders;
 using VehicleShowcase.Application.Services.Extensions;
 using VehicleShowcase.Infrastructure.Services.Extensions;
 
@@ -13,6 +14,12 @@ var app = builder.Build();
 app.MigrateDatabase();
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images")),
+    RequestPath = "/images"
+});
 
 app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 

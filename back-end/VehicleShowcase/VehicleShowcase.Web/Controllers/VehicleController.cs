@@ -68,5 +68,12 @@ namespace VehicleShowcase.Web.Controllers
 
             return Ok(vehicle);
         }
+
+        [Authorize]
+        [HttpPost("upload/image")]
+        public async Task<ActionResult<GetAdminResponseDTO>> UploadVehicleImageAsync([FromForm] int vehicleId, [FromForm] IFormFile image)
+        {
+            return Ok(await _vehicleService.UploadVehicleImageAsync(vehicleId, image));
+        }
     }
 }

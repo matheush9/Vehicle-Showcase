@@ -24,6 +24,7 @@ namespace VehicleShowcase.Application.Services.Extensions
         {
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<IImageUploadService, ImageUploadService>();
         }
 
         public static void RegisterMapper(IServiceCollection services)

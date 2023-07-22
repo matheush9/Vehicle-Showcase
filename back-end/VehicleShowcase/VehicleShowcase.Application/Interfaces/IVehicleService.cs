@@ -1,4 +1,5 @@
-﻿using VehicleShowcase.Application.DTOs.Vehicle;
+﻿using Microsoft.AspNetCore.Http;
+using VehicleShowcase.Application.DTOs.Vehicle;
 
 namespace VehicleShowcase.Application.Interfaces
 {
@@ -8,6 +9,7 @@ namespace VehicleShowcase.Application.Interfaces
         Task<List<GetVehicleResponseDTO>> GetAllVehiclesOrderByPriceAsync();
         Task<List<GetVehicleResponseDTO>> GetAllVehiclesOrderByDescending();
         Task<GetVehicleResponseDTO> AddVehicleAsync(AddVehicleRequestDTO newVehicle);
+        Task<GetVehicleResponseDTO> UploadVehicleImageAsync(int vehicleId, IFormFile image);
         Task DeleteVehicleAsync(int id);
         Task<GetVehicleResponseDTO> UpdateVehicleAsync(int id, AddVehicleRequestDTO newVehicle);
     }

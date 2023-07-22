@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using VehicleShowcase.Application.DTOs.Vehicle;
 using VehicleShowcase.Application.Interfaces;
@@ -9,13 +10,15 @@ namespace VehicleShowcase.Application.Services
 {
     public class VehicleService : IVehicleService
     {
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapper; 
+        private readonly IImageUploadService _imageUploadService;
         private readonly DataContext _dataContext;
 
-        public VehicleService(DataContext dataContext, IMapper mapper)
+        public VehicleService(DataContext dataContext, IMapper mapper, IImageUploadService imageUploadService)
         {
             _dataContext = dataContext;
             _mapper = mapper;
+            _imageUploadService = imageUploadService;
         }
 
         public async Task<GetVehicleResponseDTO> GetVehicleByIdAsync(int id)
@@ -71,6 +74,21 @@ namespace VehicleShowcase.Application.Services
                 vehicle.Marca = newVehicle.Marca;
                 vehicle.Foto = newVehicle.Foto;
                 vehicle.Preco = newVehicle.Preco;
+
+                await _dataContext.SaveChangesAsync();
+            }
+
+            return _mapper.Map<GetVehicleResponseDTO>(vehicle);
+        }
+
+        public async Task<GetVehicleResponseDTO> UploadVehicleImageAsync(int vehicleId, IFormFile image)
+        {
+            var imagePath = await _imageUploadService.UploadImage(image);
+            var vehicle = await _dataContext.Vehicles.FindAsync(vehicleId);
+
+            if (vehicle is not null)
+            {
+                vehicle.Foto = imagePath;
 
                 await _dataContext.SaveChangesAsync();
             }
