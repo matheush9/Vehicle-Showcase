@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Vehicle } from '../../interfaces/vehicle-interface';
 import { VehicleService } from '../../services/vehicle.service';
@@ -25,7 +25,8 @@ export class VehicleEditComponent {
 
   constructor(
     private vehicleService: VehicleService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,7 +44,7 @@ export class VehicleEditComponent {
   updateVehicle() {
     this.vehicleService
       .updateVehicle(this.veiculo.id, this.veiculo)
-      .subscribe();
+      .subscribe(() => this.router.navigate(['veiculos/painel']));
   }
 
   uploadVehicleImage(event: any) {

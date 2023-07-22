@@ -1,5 +1,6 @@
-import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { VehicleService } from 'src/app/modules/vehicle/services/vehicle.service';
 import { Vehicle } from 'src/app/modules/vehicle/interfaces/vehicle-interface';
 
