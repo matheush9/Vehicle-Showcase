@@ -22,6 +22,10 @@ export class VehicleService {
   getAllVehiclesOrderedByPrice(): Observable<Vehicle[]> {
     return this.httpClient.get<Vehicle[]>(environment.apiUrl + '/Vehicle/ordered-by-price');
   }
+  
+  getAllVehiclesOrderedDescending(): Observable<Vehicle[]> {
+    return this.httpClient.get<Vehicle[]>(environment.apiUrl + '/Vehicle/ordered-by-descending');
+  }
 
   addVehicle(newVehicle: Vehicle): Observable<Vehicle> {
     return this.httpClient.post<Vehicle>(environment.apiUrl + '/Vehicle', newVehicle, {

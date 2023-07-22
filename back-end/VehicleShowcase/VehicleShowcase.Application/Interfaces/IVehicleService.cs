@@ -6,6 +6,7 @@ namespace VehicleShowcase.Application.Interfaces
     {
         Task<GetVehicleResponseDTO> GetVehicleByIdAsync(int id);
         Task<List<GetVehicleResponseDTO>> GetAllVehiclesOrderByPriceAsync();
+        Task<List<GetVehicleResponseDTO>> GetAllVehiclesOrderByDescending();
         Task<GetVehicleResponseDTO> AddVehicleAsync(AddVehicleRequestDTO newVehicle);
         Task DeleteVehicleAsync(int id);
         Task<GetVehicleResponseDTO> UpdateVehicleAsync(int id, AddVehicleRequestDTO newVehicle);

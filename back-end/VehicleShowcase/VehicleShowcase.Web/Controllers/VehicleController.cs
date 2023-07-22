@@ -34,6 +34,12 @@ namespace VehicleShowcase.Web.Controllers
             return await _vehicleService.GetAllVehiclesOrderByPriceAsync();
         }
 
+        [HttpGet("ordered-by-descending")]
+        public async Task<ActionResult<List<GetVehicleResponseDTO>>> GetAllVehiclesOrderByDescending()
+        {
+            return await _vehicleService.GetAllVehiclesOrderByDescending();
+        }
+
         [Authorize]
         [HttpPost]
         public async Task<ActionResult<GetAdminResponseDTO>> AddVehicleAsync(AddVehicleRequestDTO newVehicle)

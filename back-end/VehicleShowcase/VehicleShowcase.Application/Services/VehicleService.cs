@@ -32,6 +32,13 @@ namespace VehicleShowcase.Application.Services
             return _mapper.Map<List<GetVehicleResponseDTO>>(vehicles);
         }
 
+        public async Task<List<GetVehicleResponseDTO>> GetAllVehiclesOrderByDescending()
+        {
+            var vehicles = await _dataContext.Vehicles.OrderByDescending(v => v.Id).ToListAsync();
+
+            return _mapper.Map<List<GetVehicleResponseDTO>>(vehicles);
+        }
+
         public async Task<GetVehicleResponseDTO> AddVehicleAsync(AddVehicleRequestDTO newVehicle)
         {
             var vehicle = _mapper.Map<Vehicle>(newVehicle);
