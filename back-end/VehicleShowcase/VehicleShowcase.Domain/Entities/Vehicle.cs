@@ -8,8 +8,11 @@ namespace VehicleShowcase.Domain.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Nome { get; set; } 
+        [Required]
+        public string Nome { get; set; }
+        [Required]
         public string Marca { get; set; }
+        [Required]
         public string Modelo { get; set; }
         public string Foto { get; set; }
 
