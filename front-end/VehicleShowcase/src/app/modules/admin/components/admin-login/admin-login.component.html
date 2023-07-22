@@ -1,0 +1,43 @@
+<div class="w-full h-full">
+  <div class="m-auto flex mt-28 flex-col justify-center w-1/4">
+
+    <span class="text-3xl text-blue-800 font-bold text-center mb-12">Login</span>
+
+    <form #form="ngForm" class="flex flex-col" (ngSubmit)="login()">
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input
+          required
+          [(ngModel)]="admin.usuario"
+          name="usuario"
+          matInput
+          #usuarioInput="ngModel"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input
+          required
+          [(ngModel)]="admin.senha"
+          type="password"
+          name="senha"
+          matInput
+          #senhaInput="ngModel"
+        />
+      </mat-form-field>
+
+      <span class="text-blue-400 cursor-pointer hover:font-bold mb-2 text-end" routerLink="/admin/new-admin">Cadastre-se</span>
+    </form>
+
+    <button
+      class=""
+      mat-flat-button
+      color="primary"
+      type="submit"
+      (click)="form.ngSubmit.emit()"
+    >
+      Login
+    </button>
+  </div>
+</div>

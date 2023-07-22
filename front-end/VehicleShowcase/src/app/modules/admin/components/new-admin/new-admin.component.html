@@ -1,0 +1,52 @@
+<div class="w-full h-full">
+  <div class="m-auto flex mt-28 flex-col justify-center w-1/4">
+    <span class="text-3xl text-blue-800 font-bold text-center mb-12"
+      >Cadastre-se</span
+    >
+    <form #form="ngForm" class="flex flex-col" (ngSubmit)="register()">
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input
+          required
+          [(ngModel)]="admin.nome"
+          name="nome"
+          matInput
+          #nomeInput="ngModel"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input
+          required
+          [(ngModel)]="admin.usuario"
+          name="usuario"
+          matInput
+          #usuarioInput="ngModel"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input
+          required
+          [(ngModel)]="admin.senha"
+          type="password"
+          name="senha"
+          matInput
+          #senhaInput="ngModel"
+        />
+      </mat-form-field>
+    </form>
+
+    <button
+      class=""
+      mat-flat-button
+      color="primary"
+      type="submit"
+      (click)="form.ngSubmit.emit()"
+    >
+      Cadastrar
+    </button>
+  </div>
+</div>
