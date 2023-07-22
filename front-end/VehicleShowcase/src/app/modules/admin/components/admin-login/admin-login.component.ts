@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Admin } from '../../interfaces/admin-interface';
 import { AdminAuthService } from '../../services/admin-auth.service';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-login',
@@ -17,14 +19,28 @@ export class AdminLoginComponent {
     senha: '',
   };
 
+  submitErrorMessage = '';
+  formSubmitted = false;
+
   constructor(
     private adminAuthService: AdminAuthService,
     private router: Router
   ) {}
 
-  login() {
-    this.adminAuthService
-      .login(this.admin)
-      .subscribe(() => this.router.navigate(['veiculos/painel']));
+  login(form: NgForm) {
+    this.formSubmitted = true;
+    if (form.valid) {
+      this.adminAuthService
+        .login(this.admin)
+        .pipe(
+          catchError((error) => {
+            if (error.status == 401) {
+              this.submitErrorMessage = 'Usuário ou senha inválido';
+            } else console.error(error);
+            throw error;
+          })
+        )
+        .subscribe(() => this.router.navigate(['veiculos/painel']));
+    }
   }
 }

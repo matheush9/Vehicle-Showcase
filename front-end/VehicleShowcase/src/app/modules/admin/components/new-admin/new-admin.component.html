@@ -3,7 +3,7 @@
     <span class="text-3xl text-blue-800 font-bold text-center mb-12"
       >Cadastre-se</span
     >
-    <form #form="ngForm" class="flex flex-col" (ngSubmit)="register()">
+    <form #form="ngForm" class="flex flex-col" (ngSubmit)="register(form)">
       <mat-form-field>
         <mat-label>Nome</mat-label>
         <input
@@ -37,6 +37,14 @@
           #senhaInput="ngModel"
         />
       </mat-form-field>
+
+      <div class="text-red-500" *ngIf="formSubmitted && form.invalid">
+        <p *ngIf="form.controls['nome'].invalid">Campo nome deve ser preenchido!</p>
+        <p *ngIf="form.controls['usuario'].invalid">Campo usuário deve ser preenchido!</p>
+        <p *ngIf="form.controls['senha'].invalid">Campo senha deve ser preenchido!</p>        
+      </div>
+
+      <mat-error *ngIf="submitErrorMessage">{{ submitErrorMessage }}</mat-error>      
     </form>
 
     <button
