@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
-  
+import { AdminAuthService } from '../../admin/services/admin-auth.service';
+
+export function authGuard(): CanActivateFn {
+  return () => {
+    const adminAuthService: AdminAuthService = inject(AdminAuthService);
+    const router: Router = inject(Router);
+
+    if (adminAuthService.adminIsLogged()) return true;
+
+    alert('Precisa estar logado como administrador para acessar esse recurso!');
+    router.navigate(['admin/login']);
+
+    return false;
+  };
 }
