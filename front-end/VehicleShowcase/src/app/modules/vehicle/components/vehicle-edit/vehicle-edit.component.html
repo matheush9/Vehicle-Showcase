@@ -1,0 +1,95 @@
+<div class="mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+  <div class="my-28 flex justify-around">
+    <div class="w-1/3 flex flex-col">
+        <mat-form-field>
+          <mat-label>Id do veículo</mat-label>
+          <input
+            disabled
+            [(ngModel)]="veiculo.id"
+            type="text"
+            name="id"
+            matInput
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input
+            required
+            [(ngModel)]="veiculo.nome"
+            type="text"
+            name="nome"
+            matInput
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Modelo</mat-label>
+          <input
+            required
+            [(ngModel)]="veiculo.modelo"
+            type="text"
+            name="modelo"
+            matInput
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Marca</mat-label>
+          <input
+            required
+            [(ngModel)]="veiculo.marca"
+            type="text"
+            name="marca"
+            matInput
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Preco</mat-label>
+          <input
+            required
+            [(ngModel)]="veiculo.preco"
+            type="number"
+            name="preco"
+            matInput
+          />
+        </mat-form-field>
+
+      <button
+        class="p-4 bg-slate-500 text-white rounded-md"
+        mat-flat-button
+        color="primary"
+        type="submit"
+        (click)="updateVehicle()"
+      >
+        Confirmar
+      </button>
+    </div>
+    <div class="flex flex-col gap-4">
+      <img class="w-full max-h-96" *ngIf="veiculo.foto; else noImage" [src]="imagesProviderUrl + veiculo.foto" alt="Foto" />
+      
+      <ng-template #noImage>
+        <img class="w-full max-h-96" [src]="'/assets/empty-image.jpg'" />
+      </ng-template>
+
+      <input
+      class="hidden"
+      type="file"
+      accept="image/*"
+      (change)="uploadVehicleImage($event)"
+      #imageUpload
+    />
+
+      <button
+        class="p-4 w-1/2 self-center bg-slate-500 text-white rounded-md"
+        mat-flat-button
+        color="primary"
+        type="submit"
+        (click)="imageUpload.click()"
+      >
+        Carregar imagem
+      </button>
+    </div>
+  </div>
+</div>

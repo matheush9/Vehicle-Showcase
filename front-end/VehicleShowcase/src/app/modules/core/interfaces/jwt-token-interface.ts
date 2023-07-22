@@ -1,5 +1,5 @@
 export interface JwtToken {
-    acessToken: string;
+    accessToken: string;
     expirationTime: Date;
     issuedAt: Date;
 }

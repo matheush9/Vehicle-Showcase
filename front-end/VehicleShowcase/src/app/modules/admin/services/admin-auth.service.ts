@@ -25,7 +25,7 @@ export class AdminAuthService {
       .post<JwtToken>(environment.apiUrl + '/Admin/auth', admin)
       .pipe(
         tap((jwtToken) => {
-          this.jwtTokenService.setToken(jwtToken.acessToken);
+          this.jwtTokenService.setToken(jwtToken.accessToken);
         })
       );
   }

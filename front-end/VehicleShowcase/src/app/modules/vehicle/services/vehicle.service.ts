@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Vehicle } from '../interfaces/vehicle-interface';
@@ -28,6 +28,7 @@ export class VehicleService {
   }
 
   addVehicle(newVehicle: Vehicle): Observable<Vehicle> {
+    console.log(this.jwtTokenService.getAuthHeader())
     return this.httpClient.post<Vehicle>(environment.apiUrl + '/Vehicle', newVehicle, {
       headers: this.jwtTokenService.getAuthHeader(),
     });
@@ -41,6 +42,19 @@ export class VehicleService {
 
   deleteVehicle(id: number): Observable<Vehicle> {
     return this.httpClient.delete<Vehicle>(environment.apiUrl + '/Vehicle/' + id, {
+      headers: this.jwtTokenService.getAuthHeader(),
+    });
+  }
+
+  uploadVehicleImage(vehicleId: number, image: File): Observable<Vehicle> {
+    if (!image) 
+      return throwError(() => new Error('The file is not valid!'));    
+
+    const formData = new FormData();
+    formData.append('image', image); 
+    formData.append('vehicleId', JSON.stringify(vehicleId));    
+
+    return this.httpClient.post<Vehicle>(environment.apiUrl + '/Vehicle/upload/image', formData, {
       headers: this.jwtTokenService.getAuthHeader(),
     });
   }

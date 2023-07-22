@@ -2,7 +2,7 @@ export interface Vehicle {
   id: number;
   nome: string;
   marca: string;
-  modelo: number;
+  modelo: string;
   foto: string;
   preco: number;
 }
