@@ -37,10 +37,10 @@ export class VehicleAddComponent {
     });
   }
   
-  uploadVehicleImage(event: any) {  
+  uploadVehicleImage(event: any) {
+    alert('O veículo em questão ainda não foi adicionado, então a imagem será carregada temporariamente!');  
     this.imageFile = event.target.files[0];      
-    this.onImageSelected(event); 
-    // vai transformar a img em base64, armazenar em uma variavel, e por fim será carregada visualmente no html
+    this.onImageSelected(event);     
   }
 
   onImageSelected(event: Event) {
