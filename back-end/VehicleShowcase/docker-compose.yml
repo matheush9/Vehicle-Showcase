@@ -6,7 +6,7 @@ services:
       - 8002:80
     image: ${DOCKER_REGISTRY-}vehicleshowcaseweb
     volumes:
-      - ./VehicleShowcase/wwwroot:/app/wwwroot
+      - ./VehicleShowcase.Web/wwwroot:/app/wwwroot
     build:
       context: .
       dockerfile: VehicleShowcase.Web/Dockerfile
