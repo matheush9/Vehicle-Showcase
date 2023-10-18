@@ -1,14 +1,24 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using VehicleShowcase.Application.DTOs.JwtToken;
+using VehicleShowcase.Application.Interfaces;
 using VehicleShowcase.Domain.Entities;
 
 namespace VehicleShowcase.Application.Services
 {
-    public class TokenService
+    public class TokenService: ITokenService
     {
-        public static JwtTokenResponseDto GenerateToken(Admin admin)
+        private readonly IConfiguration _configuration;
+
+        public TokenService(IConfiguration configuration)
+        {
+            _configuration = configuration; 
+        }
+
+        public JwtTokenResponseDto GenerateToken(Admin admin)
         {
             var tokenConfig = new SecurityTokenDescriptor
             {
@@ -19,7 +29,7 @@ namespace VehicleShowcase.Application.Services
 
                 Expires = DateTime.UtcNow.AddHours(3),
                 SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(PrivateKeyService.privateKey), SecurityAlgorithms.HmacSha256Signature)
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"])), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

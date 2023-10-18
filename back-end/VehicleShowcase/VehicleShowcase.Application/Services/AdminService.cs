@@ -14,11 +14,13 @@ namespace VehicleShowcase.Application.Services
     {
         private readonly DataContext _dataContext;
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
-        public AdminService(DataContext dataContext, IMapper mapper)
+        public AdminService(DataContext dataContext, IMapper mapper, ITokenService tokenService)
         {
             _dataContext = dataContext;
             _mapper = mapper;
+            _tokenService = tokenService;
         }
 
         public async Task<GetAdminResponseDTO> GetAdminByIdAsync(int id)
@@ -73,7 +75,7 @@ namespace VehicleShowcase.Application.Services
             var admin = await _dataContext.Admins.FirstOrDefaultAsync(x => x.Usuario == adminRequest.Usuario);
 
             if (admin is not null && PasswordHasherService.VerifyPasswordMatching(adminRequest.Senha, admin.Senha))
-                return TokenService.GenerateToken(admin);
+                return _tokenService.GenerateToken(admin);
 
             return new JwtTokenResponseDto();
         }

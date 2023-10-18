@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text;
 using VehicleShowcase.Application.Interfaces;
 
 namespace VehicleShowcase.Application.Services.Extensions
@@ -10,11 +12,11 @@ namespace VehicleShowcase.Application.Services.Extensions
     public static partial class ApplicationServicesInitializerExtension
     {
         public static IServiceCollection RegisterApplicationServices(
-                                    this IServiceCollection services)
+         this IServiceCollection services, IConfiguration configuration)
         {
             RegisterCustomServices(services);
             RegisterMapper(services);
-            RegisterAuthentication(services);
+            RegisterAuthentication(services, configuration);
             RegisterSwagger(services);
 
             return services;
@@ -25,6 +27,7 @@ namespace VehicleShowcase.Application.Services.Extensions
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IImageUploadService, ImageUploadService>();
+            services.AddScoped<ITokenService, TokenService>();
         }
 
         public static void RegisterMapper(IServiceCollection services)
@@ -32,7 +35,7 @@ namespace VehicleShowcase.Application.Services.Extensions
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
-        public static void RegisterAuthentication(IServiceCollection services)
+        public static void RegisterAuthentication(IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(x =>
             {
@@ -45,7 +48,7 @@ namespace VehicleShowcase.Application.Services.Extensions
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(PrivateKeyService.privateKey),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtKey"])),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
