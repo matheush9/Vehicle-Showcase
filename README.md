@@ -1,6 +1,10 @@
 ## Sobre
 Aplicação feita em ASP.NET Core 7.0 + MS SQL Server e Angular 15.
 
+O backend é uma Web API modelada em camadas, seguindo o conceito da clean architecture. Com Models para representar a camada de dados, Services para encapsular a lógica e regras de negócios, e Controllers para gerenciar o fluxo da aplicação e declarar os endpoints.
+
+O frontend foi construído de forma modularizada, assim empregando o lazy load. Além disso, foram criados componentes reutilizáveis, proporcionando maior escalabilidade e manutenibilidade ao sistema.
+
 ## Ambiente de produção
 
 Você pode acessar o site hospedado aqui: http://154.41.228.116:81/  
